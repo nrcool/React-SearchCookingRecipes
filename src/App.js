@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import "./css/app.css";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import _ from "dotenv";
 import Details from "./details"
 
+_.config();
 
 export default class App extends Component {
   constructor(props){
@@ -17,9 +19,7 @@ componentDidMount(){
   this.getdata("chicken")
 }
  getdata(value){
-  const APP_KEY="1040f03a7bfe6a127becb32b12e05d87";
-    const APP_ID="ff434c98";
-      fetch(`https://api.edamam.com/search?q=${value}&app_id=${APP_ID}&app_key=${APP_KEY}`).then(response=>{
+      fetch(`https://api.edamam.com/search?q=${value}&app_id=${process.env.APP_ID}&app_key=${process.env.APP_KEY}`).then(response=>{
         return response.json();
       }).then(data => {
         console.log(data)
